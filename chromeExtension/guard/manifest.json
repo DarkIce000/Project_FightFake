@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Guard",
+  "description": "Enable focus mode on Chrome's official Extensions and Chrome Web Store documentation.",
+  "version": "1.0",
+  "action": {
+    "default-popup": "popup/popup.html", 
+    "default-icon": "images/pumpkin.png"
+  }, 
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "scripting"]
+}
