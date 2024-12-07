@@ -1,0 +1,13 @@
+let tweet = {
+    id: for identifying in the page, 
+    txt: text of the tweet,
+    result: {
+        sentiment_analysis: "",
+        is_fake: bool, 
+        sources: [
+            "source1",
+            "source2",
+            "source3"
+        ]
+    }
+}
