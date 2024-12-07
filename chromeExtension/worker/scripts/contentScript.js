@@ -32,20 +32,35 @@ async function sendToServerForAnalysis(PORT, tweetsarray){
             tweets.forEach((element) => {
                 let tweetInfo = {
                     id: element.id,
-                    text: element.innerHTML
+                    text: element.innerHTML || element.textContent
                 }
                 tweetsarray.push(tweetInfo);
             })
 
             // send to the pop up html to display on the pop up
             sendResponse(JSON.stringify(tweetsarray));
+            console.log("tweetsaaray: ", tweetsarray);
 
             const analysisResult = await sendToServerForAnalysis(PORT, tweetsarray);
-            console.log(analysisResult)
-
+            console.log("analysisresult: ", analysisResult)
 
             // TODO: after getting result update twitter page 
+            analysisResult.forEach(element => {
+                const findTweet = document.getElementById(`${element.id}`)
+                if(element.is_fake === true){
+                    findTweet.style.color = "red";
+                }else if(element.is_fake === false){
+                    findTweet.style.color = "green";
+                }else{
+                    findTweet.style.color = "grey";
+                }
+            })
+
             // TODO: send a message to the extension to update the pop up page
+            chrome.tabs.sendMessage(activeTab.id, {
+                action: "updatePopup", 
+                result: analysisResult 
+            })
         }
     })
 
