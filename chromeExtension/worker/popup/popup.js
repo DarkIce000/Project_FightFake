@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const activeTab = await getCurrentTab() ; 
 
+    // check for which tab is active
     if(activeTab.url.includes('x.com')){
         msg.innerHTML = `${ activeTab.url }`;
     }else{
@@ -14,48 +15,26 @@ document.addEventListener("DOMContentLoaded", async () => {
         scanBtn.style.display = 'none';
     }
 
+    // send a meassage to the content script to grab
+    // text tweets
     scanBtn.onclick = () => {
         chrome.tabs.sendMessage(activeTab.id, {
             action: "grab"
         })
         .then( response => {
 
-            const tweetBox = document.querySelector('#tweet-box'); 
             let result = JSON.parse(response);
-            console.log(result);
-            tweetBox.innerHTML = ""
-
-            // for (let i = 0; i < result.length; i++){
-            //     if(i%2 !== 0){
-            //         tweetBox.innerHTML += '<li>' + result[i] + '</li>'; 
-            //     }
-            // }
+            // grab box for adding tweets
+            const tweetBox = document.querySelector('#tweet-box');
+            tweetBox.innerHTML = "" // clean
 
             result.forEach(element => {
-                if (element !== " " && element !== null ){
-                    tweetBox.innerHTML += '<li>' + element + '</li>';  
+                if (element.text !== " " && element.text !== null ){
+                    tweetBox.innerHTML += '<li>' + element.id + ":" + element.text + '</li>';  // append
                 }
             });
-            
-            
-            
+
         })
     }
-
-})
-
-const connectServer = new Promise((resolve, reject) => {
-
-    fetch("http://localhost:5000/", {
-        body: JSON.stringify()
-    })
-    .then(reponse = reponse.json())
-    .then(result => {
-        console.log(result)
-        resolve(result);
-    })
-    .catch(error => {
-        console.log(error); 
-    })
 
 })

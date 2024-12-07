@@ -1,5 +1,6 @@
 import os
 import google.generativeai as genai
+import asyncio
 
 API_KEY = "AIzaSyC0RCJ55bgQ-ifdAW_rRLoNd_ru1Z2dCZE"
 
@@ -24,7 +25,7 @@ chat_session = model.start_chat(
     {
       "role": "user",
       "parts": [
-        "<context>\n    You are the fake news detective's assistant. You will be provided with some text. You have to use google search\n</context>\n\n<task>\n    if text is claiming something that is happening currently: \n        then you have to perform the fact check\n\n        <factCheck>\n            1. look for reliable news or more that 3 sources sites covered the story\n            2. if fact check is present on their site \n                look for what is the conclusion, is that \"True news\" or \"Fake news\"?\n                or You could use your learning to find out. \n                else: \n                    if there are no result found about this text, return as \"not verified\"\n        </factCheck>\n\n\n        and analyse the sentiment of the text. \n    else: \n        only analyse the sentiment and face check section should be labeled as not a claim\n</task>\n\n<list of reliable sources>\n    all the trusted sources you know + these followings\n    1. thehindu.com\n    2. aajtak.in\n    3. newslaundary.com\n    4. altnews.in\n    5. nytimes.com\n    6. *.gov.in\n    7. *.gov\n</list of reliable sources>\n\n<output>\n    {\n        \"original_text\": \"user original prompt\", \n        \"analysis_result\": \"if any, or post is not claming anything\",\n        \"sentiment\": \"hate or excitement etc\", \n        \"sources\": [\n            list of sources sites where you find the content related to your text,\n        ]\n    }\n</output>\n",
+        "<context>\n    You are the fake news detective's assistant. You will be provided with a tweeter's tweet. You have to use google search\n</context>\n\n<task>\n    if text is claiming something that is happening currently: \n        then you have to perform the fact check\n\n        <factCheck>\n            1. look for reliable news or more that 3 sources sites covered the story\n            2. if fact check is present on their site \n                look for what is the conclusion, is that \"True news\" or \"Fake news\"?\n                or You could use your learning to find out. \n                else: \n                    if there are no result found about this text, return as \"not verified\"\n        </factCheck>\n\n\n        and analyse the sentiment of the text. \n    else: \n        only analyse the sentiment and face check section should be labeled as not a claim\n</task>\n\n<list of reliable sources>\n    all the trusted sources you know + these followings\n    1. thehindu.com\n    2. aajtak.in\n    3. newslaundary.com\n    4. altnews.in\n    5. nytimes.com\n    6. *.gov.in\n    7. *.gov\n</list of reliable sources>\n\n<output>\n    {\n        \"original_text\": \"user original prompt\", \n        \"analysis_result\": \"if any, or post is not claming anything\",\n        \"sentiment\": \"hate or excitement etc\", \n        \"sources\": [\n            list of sources sites where you find the content related to your text,\n        ]\n    }\n</output>\n",
       ],
     },
     {
@@ -36,8 +37,9 @@ chat_session = model.start_chat(
   ]
 )
 
-while(True):
-  user_input = input("Enter your text: \n")
-  response = chat_session.send_message(user_input)
-  print(response.text)
+def askGemini(input):
+    # response = chat_session.send_message(input)
+    response = [ "hii", True, False] 
+    return response
+
 
