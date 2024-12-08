@@ -30,11 +30,13 @@ async function sendToServerForAnalysis(PORT, tweetsarray){
             // serializing tweets
             let tweetsarray = []
             tweets.forEach((element) => {
-                let tweetInfo = {
-                    id: element.id,
-                    text: element.innerHTML || element.textContent
+                if (element.id !== ""){
+                    let tweetInfo = {
+                        id: element.id,
+                        text: element.innerHTML || element.textContent
+                    }
+                    tweetsarray.push(tweetInfo);
                 }
-                tweetsarray.push(tweetInfo);
             })
 
             // send to the pop up html to display on the pop up
@@ -47,12 +49,12 @@ async function sendToServerForAnalysis(PORT, tweetsarray){
             // TODO: after getting result update twitter page 
             analysisResult.forEach(element => {
                 const findTweet = document.getElementById(`${element.id}`)
-                if(element.is_fake === true){
+                if(element.is_fake == true){
                     findTweet.style.color = "red";
-                }else if(element.is_fake === false){
+                }else if(element.is_fake == false){
                     findTweet.style.color = "green";
                 }else{
-                    findTweet.style.color = "grey";
+                    findTweet.style.color = "yellow";
                 }
             })
 

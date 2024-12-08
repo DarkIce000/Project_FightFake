@@ -1,6 +1,7 @@
 import os
 import google.generativeai as genai
 from google.ai.generativelanguage_v1beta.types import content
+from google.api_core import exceptions
 
 API_KEY = "AIzaSyC0RCJ55bgQ-ifdAW_rRLoNd_ru1Z2dCZE"
 API_KEY_2 = "AIzaSyCwnrhraD4ZpVzPn2ydtm4UVWkkXogIFI0"
@@ -16,7 +17,7 @@ generation_config = {
 }
 
 model = genai.GenerativeModel(
-  model_name="gemini-1.5-pro",
+  model_name="gemini-1.5-flash",
   generation_config=generation_config,
   tools = "google_search_retrieval"
 )
@@ -51,39 +52,68 @@ chat_session = model.start_chat(
 )
 
 
-
-def askGemini(tweetsarray):
-    response = chat_session.send_message(tweetsarray)
-    return response
-
 test = [
-    {
-        "id": "id__g17ov29ydar",
-        "text": "<span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">you just won $50 million and your lifelong friend says “we’re rich” what do you say back?</span>"
-    },
-    {
-        "id": "id__yk3gc3k8lhl",
-        "text": "<span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">For any college student reading this, here’s how a typical production release looks like, specifically with a customer facing feature in a big Org such as Amazon. \n\n0. Any new feature/change you push is mostly under a feature flag which if true only executes your change.\n\n1. Bug</span>"
-    },
-    {
-        "id": "",
-        "text": "<span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">A single missing '#' in his code \"stopped Amazon delivery system for a day\".\n\nHe is right I was the delivery guy. we were waiting for Babbar bhaiya to add '#'.</span>"
-    },
-    {
-        "id": "id__8bn89q5yszh",
-        "text": "<span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">Nick Fuentes mugshot has been released</span>"
-    },
-    {
-        "id": "id__9zzl767mgw",
-        "text": "<span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">Keanu Reeves wasn't pretending to be John Wick </span><img alt=\"😳\" draggable=\"false\" src=\"https://abs-0.twimg.com/emoji/v2/svg/1f633.svg\" class=\"r-4qtqp9 r-dflpy8 r-k4bwe5 r-1kpi4qh r-pp5qcn r-h9hxbl\">"
-    },
-    {
-        "id": "id__8v83yn7hv1q",
-        "text": "<span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">Jet suit paramedics can fly to the top of Helvellyn in just 3.5 minutes instead of the usual 1 hour 15 minutes.</span>"
+  {
+    "id": "id__7mu5kalat18",
+    "txt": "BREAKING: Elon Musk met with Giorgia Meloni and Donald Trump tonight.",
+    "result": {
+      "sentiment_analysis": "Informative, slightly sensational",
+      "is_fake": "Not verified",
+      "sources": []
     }
+  },
+  {
+    "id": "id__hn8rkzy0uxr",
+    "txt": "Jim Carrey on playing both Gerald and Ivo Robotnik in ‘SONIC 3’:\n\n“I was excited to do 2 Robotniks until I found out it would be twice the work & the same salary”",
+    "result": {
+      "sentiment_analysis": "Humorous, slightly cynical",
+      "is_fake": "Not a claim",
+      "sources": []
+    }
+  },
+  {
+    "id": "id__qi5ci8pvgys",
+    "txt": "React apps are still using class components in 2024",
+    "result": {
+      "sentiment_analysis": "Slightly negative, surprised",
+      "is_fake": False,
+      "sources": []
+    }
+  },
+  {
+    "id": "id__7a7bsxv4uov",
+    "txt": "💻DAY 20 Stay consistent, solve problems, and keep learning! 📷 #geekstreak2024 #gfg160 #gfgdsachallenge",
+    "result": {
+      "sentiment_analysis": "Positive, motivational",
+      "is_fake": True,
+      "sources": []
+    }
+  },
+  {
+    "id": "id__pmy3aj246pb",
+    "txt": "you only grow when you\nare alone",
+    "result": {
+      "sentiment_analysis": "Reflective, slightly melancholic",
+      "is_fake": True,
+      "sources": []
+    }
+  },
+  {
+    "id": "id__0ujnyuh8upmk",
+    "txt": "A new beginning for ourselves.",
+    "result": {
+      "sentiment_analysis": "Positive, hopeful",
+      "is_fake": "Not a claim",
+      "sources": []
+    }
+  }
 ]
 
-response  = askGemini(str(test))
 
-print(response)
+def askGemini(tweetsarray):
+  # try:
+  #   response = chat_session.send_message(tweetsarray)
+  # except(exceptions.ResourceExhausted):
+  return test
+
 

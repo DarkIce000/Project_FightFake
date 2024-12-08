@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const scanBtn = document.querySelector('#scan-btn');
     const msg = document.querySelector('#msg-box'); 
+    const tweetBox = document.querySelector('#tweet-box');
 
     const activeTab = await getCurrentTab() ; 
 
@@ -25,7 +26,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             let result = JSON.parse(response);
             // grab box for adding tweets
-            const tweetBox = document.querySelector('#tweet-box');
             tweetBox.innerHTML = "" // clean
 
             result.forEach(element => {
@@ -36,5 +36,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         })
     }
+
+    chrome.runtime.onMessage((obj, sender, sendResponse) => {
+        const {action, result } = obj;
+        if(action === "updatePopup"){
+            tweetBox = "";
+            result.forEach(item => {
+                tweetBox += item.text;
+            })
+        }
+    })
 
 })
