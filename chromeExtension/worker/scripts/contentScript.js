@@ -39,9 +39,9 @@ async function sendToServerForAnalysis(PORT, tweetsarray){
                 }
             })
 
+            console.log("tweetsaaray: ", tweetsarray);
             // send to the pop up html to display on the pop up
             sendResponse(JSON.stringify(tweetsarray));
-            console.log("tweetsaaray: ", tweetsarray);
 
             const analysisResult = await sendToServerForAnalysis(PORT, tweetsarray);
             console.log("analysisresult: ", analysisResult)
@@ -49,9 +49,10 @@ async function sendToServerForAnalysis(PORT, tweetsarray){
             // TODO: after getting result update twitter page 
             analysisResult.forEach(element => {
                 const findTweet = document.getElementById(`${element.id}`)
-                if(element.is_fake == true){
+                console.log(element)
+                if(element.result.is_fake === "False"){
                     findTweet.style.color = "red";
-                }else if(element.is_fake == false){
+                }else if(element.result.is_fake === "True"){
                     findTweet.style.color = "green";
                 }else{
                     findTweet.style.color = "yellow";

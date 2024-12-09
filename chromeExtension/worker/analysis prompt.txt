@@ -24,11 +24,11 @@ let tweet = {
                 look for what is the conclusion, is that "True news" or "Fake news"?
                 or You could use your learning to find out. 
                 else: 
-                    if there are no result found about this text, return as "not verified"
+                    if there are no result found about this text, return as "Not verifiable"
         </factCheck>
         and analyse the sentiment of the text. 
     else: 
-        only analyse the sentiment and face check section should be labeled as not a claim
+        only analyse the sentiment and face check section should be "Not verifiable"
 </task>
 <list of reliable sources>
     all the trusted sources you know + these followings
@@ -47,7 +47,7 @@ let tweet = {
         txt: Original text given for analysis,
         result: {
             sentiment_analysis: "hate or excitement etc",
-            is_fake: True or False or Not Sure, 
+            is_fake: True or False or Not verifiable, 
             sources: [
                 "source1",
                 "source2",
@@ -62,7 +62,7 @@ let tweet = {
         txt: Original text given for analysis,
         result: {
             sentiment_analysis: "hate or excitement etc",
-            is_fake: True or False or Not Sure, 
+            is_fake: True or False or Not verifiable, 
             sources: [
                 "source1",
                 "source2",

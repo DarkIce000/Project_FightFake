@@ -5,7 +5,7 @@ from google.api_core import exceptions
 
 API_KEY = "AIzaSyC0RCJ55bgQ-ifdAW_rRLoNd_ru1Z2dCZE"
 API_KEY_2 = "AIzaSyCwnrhraD4ZpVzPn2ydtm4UVWkkXogIFI0"
-genai.configure(api_key=API_KEY_2)
+genai.configure(api_key=API_KEY)
 
 # Create the model
 generation_config = {
@@ -51,69 +51,129 @@ chat_session = model.start_chat(
   ]
 )
 
-
 test = [
-  {
-    "id": "id__7mu5kalat18",
-    "txt": "BREAKING: Elon Musk met with Giorgia Meloni and Donald Trump tonight.",
-    "result": {
-      "sentiment_analysis": "Informative, slightly sensational",
-      "is_fake": "Not verified",
-      "sources": []
+    {
+        "id": "id__u0e5wgo8w4d",
+        "text": "<span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">BREAKING: Rapper Jay-Z accused of r*ping a 13-year-old girl in 2000 with Diddy, according to NBC News.\n\nThe incident was previously reported on but the ‘celebrity’ (Jay Z) was not named at the time.\n\nThe incident happened at an MTV Music Awards afterparty after the girl was</span>"
+    },
+    {
+        "id": "id__4zag94cz8ao",
+        "text": "<span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">bro can literally give everyone on earth 1 million dollars and still have money left over </span><img alt=\"😭\" draggable=\"false\" src=\"https://abs-0.twimg.com/emoji/v2/svg/1f62d.svg\" title=\"Loudly crying face\" class=\"r-4qtqp9 r-dflpy8 r-k4bwe5 r-1kpi4qh r-pp5qcn r-h9hxbl\">"
+    },
+    {
+        "id": "id__p48gd0k4uja",
+        "text": "<span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">The Raspberry Pi 500 launches today, for $90. Raspberry Pi sent one to test, and of course the first thing I did was rip the shell apart to see if it had an M.2 slot inside... </span><span class=\"r-18u37iz\"><a dir=\"ltr\" href=\"/hashtag/Pi500?src=hashtag_click\" role=\"link\" class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-1loqt21\" style=\"text-overflow: unset; color: rgb(29, 155, 240);\">#Pi500</a></span><span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\"> </span><img alt=\"🧵\" draggable=\"false\" src=\"https://abs-0.twimg.com/emoji/v2/svg/1f9f5.svg\" title=\"Thread\" class=\"r-4qtqp9 r-dflpy8 r-k4bwe5 r-1kpi4qh r-pp5qcn r-h9hxbl\">"
+    },
+    {
+        "id": "id__fpcjkun74n",
+        "text": "<span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">NBC News reports that Jay-Z has been accused of raping a 13-year-old girl with Diddy in 2000, according to a civil lawsuit.</span>"
+    },
+    {
+        "id": "id__o8ilmm09mjr",
+        "text": "<img alt=\"✔️\" draggable=\"false\" src=\"https://abs-0.twimg.com/emoji/v2/svg/2714.svg\" title=\"Heavy check mark\" class=\"r-4qtqp9 r-dflpy8 r-k4bwe5 r-1kpi4qh r-pp5qcn r-h9hxbl\"><span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\"> Solved day 87 of n-day </span><span class=\"r-18u37iz\"><a dir=\"ltr\" href=\"/hashtag/potd?src=hashtag_click\" role=\"link\" class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-1loqt21\" style=\"text-overflow: unset; color: rgb(29, 155, 240);\">#potd</a></span><span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\"> solution \nAt </span><div class=\"css-175oi2r r-xoduu5\"><span class=\"r-18u37iz\"><a dir=\"ltr\" href=\"/geeksforgeeks\" role=\"link\" class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-1loqt21\" style=\"text-overflow: unset; color: rgb(29, 155, 240);\">@geeksforgeeks</a></span></div><span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\"> \n\n</span><img alt=\"✔️\" draggable=\"false\" src=\"https://abs-0.twimg.com/emoji/v2/svg/2714.svg\" title=\"Heavy check mark\" class=\"r-4qtqp9 r-dflpy8 r-k4bwe5 r-1kpi4qh r-pp5qcn r-h9hxbl\"><span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">Day 23 of 160 days challenge!!\n</span><span class=\"r-18u37iz\"><a dir=\"ltr\" href=\"/hashtag/DSA?src=hashtag_click\" role=\"link\" class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-1loqt21\" style=\"text-overflow: unset; color: rgb(29, 155, 240);\">#DSA</a></span><span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\"> \n</span><span class=\"r-18u37iz\"><a dir=\"ltr\" href=\"/hashtag/geekstreak2024?src=hashtag_click\" role=\"link\" class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-1loqt21\" style=\"text-overflow: unset; color: rgb(29, 155, 240);\">#geekstreak2024</a></span><span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\"> \n</span><span class=\"r-18u37iz\"><a dir=\"ltr\" href=\"/hashtag/geeksforgeeks?src=hashtag_click\" role=\"link\" class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-1loqt21\" style=\"text-overflow: unset; color: rgb(29, 155, 240);\">#geeksforgeeks</a></span><span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\"> \n</span><span class=\"r-18u37iz\"><a dir=\"ltr\" href=\"/hashtag/gfg?src=hashtag_click\" role=\"link\" class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-1loqt21\" style=\"text-overflow: unset; color: rgb(29, 155, 240);\">#gfg</a></span><span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">\n</span><span class=\"r-18u37iz\"><a dir=\"ltr\" href=\"/hashtag/160days_challenge?src=hashtag_click\" role=\"link\" class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-1loqt21\" style=\"text-overflow: unset; color: rgb(29, 155, 240);\">#160days_challenge</a></span><span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\">\n</span><span class=\"r-18u37iz\"><a dir=\"ltr\" href=\"/hashtag/CodingChallenge?src=hashtag_click\" role=\"link\" class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-1loqt21\" style=\"text-overflow: unset; color: rgb(29, 155, 240);\">#CodingChallenge</a></span><span class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3\" style=\"text-overflow: unset;\"> \n</span><span class=\"r-18u37iz\"><a dir=\"ltr\" href=\"/hashtag/dsachallenge?src=hashtag_click\" role=\"link\" class=\"css-1jxf684 r-bcqeeo r-1ttztb7 r-qvutc0 r-poiln3 r-1loqt21\" style=\"text-overflow: unset; color: rgb(29, 155, 240);\">#dsachallenge</a></span>"
     }
-  },
-  {
-    "id": "id__hn8rkzy0uxr",
-    "txt": "Jim Carrey on playing both Gerald and Ivo Robotnik in ‘SONIC 3’:\n\n“I was excited to do 2 Robotniks until I found out it would be twice the work & the same salary”",
-    "result": {
-      "sentiment_analysis": "Humorous, slightly cynical",
-      "is_fake": "Not a claim",
-      "sources": []
-    }
-  },
-  {
-    "id": "id__qi5ci8pvgys",
-    "txt": "React apps are still using class components in 2024",
-    "result": {
-      "sentiment_analysis": "Slightly negative, surprised",
-      "is_fake": False,
-      "sources": []
-    }
-  },
-  {
-    "id": "id__7a7bsxv4uov",
-    "txt": "💻DAY 20 Stay consistent, solve problems, and keep learning! 📷 #geekstreak2024 #gfg160 #gfgdsachallenge",
-    "result": {
-      "sentiment_analysis": "Positive, motivational",
-      "is_fake": True,
-      "sources": []
-    }
-  },
-  {
-    "id": "id__pmy3aj246pb",
-    "txt": "you only grow when you\nare alone",
-    "result": {
-      "sentiment_analysis": "Reflective, slightly melancholic",
-      "is_fake": True,
-      "sources": []
-    }
-  },
-  {
-    "id": "id__0ujnyuh8upmk",
-    "txt": "A new beginning for ourselves.",
-    "result": {
-      "sentiment_analysis": "Positive, hopeful",
-      "is_fake": "Not a claim",
-      "sources": []
-    }
-  }
 ]
 
+sample_analysis = [
+    {
+        "id": "id__n96ov9f64i",
+        "txt": "You meet your 12 year old self.\nYou’re allowed 3 words.\nWhat are you saying?",
+        "result": {
+            "sentiment_analysis": "Neutral",
+            "is_fake": "Not verifiable",
+            "sources": []
+        }
+    },
+    {
+        "id": "id__x1u9pp78az",
+        "txt": "Respect 🫡🫡",
+        "result": {
+            "sentiment_analysis": "Positive",
+            "is_fake": "True",
+            "sources": []
+        }
+    },
+    {
+        "id": "id__trbws2kcbk",
+        "txt": "Arnie says you must write your last commit message below 😁👇🏻",
+        "result": {
+            "sentiment_analysis": "Neutral",
+            "is_fake": "Not verifiable",
+            "sources": []
+        }
+    },
+    {
+        "id": "id__gh7y2yds5z",
+        "txt": "career update(3/n) : I have joined @browserstack as software engineer-1 (backend)",
+        "result": {
+            "sentiment_analysis": "Positive",
+            "is_fake": "False",
+            "sources": []
+        }
+    }
+]
+
+sample_analysis =[
+    {
+        "id": "id__lae4wulxjp",
+        "txt": "Krunal Pandya was too good in Pushpa 2.",
+        "result": {
+            "sentiment_analysis": "Positive",
+            "is_fake": "False",
+            "sources": [
+                "https://www.cinestaan.com/articles/27754/krunal-pandya-the-cricketer-was-not-in-pushpa-the-rule",
+                "https://www.republicworld.com/sports-news/cricket-news/ipl-2023-krunal-pandya-reveals-all-about-his-pushpa-celebration-after-dismissing-virat-kohli-articles-119234",
+                "https://www.news18.com/cricketnext/news/krunal-pandyas-pushpa-celebration-after-virat-kohlis-wicket-goes-viral-7529279.html"
+
+
+            ]
+        }
+    },
+    {
+        "id": "id__h051bt5l8kr",
+        "txt": "That's why...🤔",
+        "result": {
+            "sentiment_analysis": "Neutral",
+            "is_fake": "Not verifiable",
+            "sources": []
+        }
+    },
+    {
+        "id": "id__bv9ujpab2m",
+        "txt": "Explorable Todo List",
+        "result": {
+            "sentiment_analysis": "Neutral",
+            "is_fake": "Not verifiable",
+            "sources": []
+        }
+    },
+    {
+        "id": "id__5qffdw89x5q",
+        "txt": "source: tech twitter",
+        "result": {
+            "sentiment_analysis": "Neutral",
+            "is_fake": "Not verifiable",
+            "sources": []
+        }
+    },
+    {
+        "id": "id__oo6pxa080v",
+        "txt": "We found it in archives. 16 years ago, in 2008, at a summit of Arab leaders in Damascus, Gaddafi, showing the execution of Saddam Hussein, said:",
+        "result": {
+            "sentiment_analysis": "Neutral", 
+            "is_fake": "Not verifiable", 
+            "sources": []
+        }
+    }
+]
 
 def askGemini(tweetsarray):
   # try:
   #   response = chat_session.send_message(tweetsarray)
   # except(exceptions.ResourceExhausted):
-  return test
+  #   return "Something went wrong"
+  return sample_analysis
 
 
+# r = askGemini(str(test))
+# print(r)

@@ -45,6 +45,7 @@ ol.gradient-list > li {
   counter-increment: gradient-counter;
   margin-top: 1rem;
   min-height: 3rem;
+  overflow-y: scroll;
   padding: 1rem 1rem 1rem 3rem;
   position: relative;
 }
