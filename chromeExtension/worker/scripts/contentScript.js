@@ -51,11 +51,11 @@ async function sendToServerForAnalysis(PORT, tweetsarray){
                 const findTweet = document.getElementById(`${element.id}`)
                 console.log(element)
                 if(element.result.is_fake === "False"){
-                    findTweet.style.color = "red";
-                }else if(element.result.is_fake === "True"){
                     findTweet.style.color = "green";
+                }else if(element.result.is_fake === "True"){
+                    findTweet.style.color = "red";
                 }else{
-                    findTweet.style.color = "yellow";
+                    findTweet.style.color = "grey";
                 }
             })
 
