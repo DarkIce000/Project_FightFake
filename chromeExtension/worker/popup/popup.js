@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if(action === "updatePopup"){
             tweetBox = "";
             result.forEach(item => {
-                tweetBox += item.text;
+                tweetBox.innerHTML += item.text + item["sentiment_analysis"];
             })
         }
     })

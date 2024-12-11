@@ -32,7 +32,6 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "tabs",
-    "webNavigation"
+    "tabs"
   ]
 }

@@ -168,11 +168,13 @@ sample_analysis =[
 ]
 
 def askGemini(tweetsarray):
-  # try:
-  #   response = chat_session.send_message(tweetsarray)
-  # except(exceptions.ResourceExhausted):
-  #   return "Something went wrong"
-  return sample_analysis
+  try:
+    response = chat_session.send_message(str(tweetsarray))
+  except(exceptions.ResourceExhausted):
+    return "Resource exhausted error"
+  except:
+    return "something went wrong"
+#   return sample_analysis
 
 
 # r = askGemini(str(test))

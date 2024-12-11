@@ -33,7 +33,7 @@ async function sendToServerForAnalysis(PORT, tweetsarray){
                 if (element.id !== ""){
                     let tweetInfo = {
                         id: element.id,
-                        text: element.innerHTML || element.textContent
+                        text: element.innerText || element.textContent
                     }
                     tweetsarray.push(tweetInfo);
                 }
