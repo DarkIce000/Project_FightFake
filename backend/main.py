@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask import jsonify
+import json
 from flask_cors import CORS
 from gemini_analysis import askGemini
 from local_analysis_model import askLocal
@@ -10,9 +11,11 @@ CORS(app)
 
 @app.route("/analyse/gemini/", methods=["POST"])
 def serve():
-    print(request.data)
-    # result = askGemini(request.data)
-    return request.data
+    data = json.loads(request.data)
+    print(type(data["data"]))
+    print(data["data"])
+    result = askLocal(data["data"])
+    return jsonify(result)
 
 if __name__ == '__main__':  
    app.run() 

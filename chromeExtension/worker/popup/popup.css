@@ -45,7 +45,7 @@ ol.gradient-list > li {
   counter-increment: gradient-counter;
   margin-top: 1rem;
   min-height: 3rem;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   padding: 1rem 1rem 1rem 3rem;
   position: relative;
 }
@@ -55,7 +55,7 @@ ol.gradient-list > li::before, ol.gradient-list > li::after {
   content: "";
   height: 3rem;
   left: -1rem;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: absolute;
   top: -1rem;
   width: 3rem;
@@ -109,7 +109,8 @@ ol.gradient-list > li + li {
 #scan-btn {
   appearance: button;
   backface-visibility: hidden;
-  background-color: #405cf5;
+  background: linear-gradient(135deg, #83e4e2 0%, #a2ed56 100%);
+  
   border-radius: 6px;
   border-width: 0;
   box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
@@ -147,4 +148,112 @@ ol.gradient-list > li + li {
 #tweet-box {
   padding: 20px;
   width: 100%;
+}
+
+.topbar{
+  margin:auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* background  */
+
+body{
+  background: #3399ff;
+}
+
+
+.circle{
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: ripple 15s infinite;
+  box-shadow: 0px 0px 1px 0px #508fb9;
+}
+
+.small{
+  width: 200px;
+  height: 200px;
+  left: -100px;
+  bottom: -100px;
+}
+
+.medium{
+  width: 400px;
+  height: 400px;
+  left: -200px;
+  bottom: -200px;
+}
+
+.large{
+  width: 600px;
+  height: 600px;
+  left: -300px;
+  bottom: -300px;
+}
+
+.xlarge{
+  width: 800px;
+  height: 800px;
+  left: -400px;
+  bottom: -400px;
+}
+
+.xxlarge{
+  width: 1000px;
+  height: 1000px;
+  left: -500px;
+  bottom: -500px;
+}
+
+.shade1{
+  opacity: 0.2;
+}
+.shade2{
+  opacity: 0.5;
+}
+
+.shade3{
+  opacity: 0.7;
+}
+
+.shade4{
+  opacity: 0.8;
+}
+
+.shade5{
+  opacity: 0.9;
+}
+
+@keyframes ripple{
+  0%{
+    transform: scale(0.8);
+  }
+  
+  50%{
+    transform: scale(1.2);
+  }
+  
+  100%{
+    transform: scale(0.8);
+  }
+}
+
+#scan-btn{
+  color:#1d1f20;
+}
+
+.highlightRed, .highlightGreeen  *{
+  background-color: red !important;
+}
+
+.highlightGreen, .highlightGreen *{
+  background-color:green !important; 
 }

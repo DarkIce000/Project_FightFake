@@ -39,11 +39,39 @@ pac.fit(tfidf_train,y_train)
 y_pred=pac.predict(tfidf_test)
 
 def askLocal(data):
+    print(data)
     analysis_result = []
     for i in data:
-        transformed_txt = tfidf_vectorizer.transform(i.text)
+        print(i)
+        transformed_txt = tfidf_vectorizer.transform([i["text"]])
         prediction = pac.predict(transformed_txt)
-        result = {"id": i.id, }
+        result = {
+            "id": i["id"],
+            "text": i["text"],
+            "result":{
+                "sentiment_analysis": "",
+                "is_fake": True if prediction[0] == "FAKE" else False,
+                "sources":[]
+            }
+        }
+        analysis_result.append(result)
+    
+    return analysis_result
+
+
+# let tweet = {
+#     id: for identifying in the page, 
+#     txt: text of the tweet,
+#     result: {
+#         sentiment_analysis: "",
+#         is_fake: bool, 
+#         sources: [
+#             "source1",
+#             "source2",
+#             "source3"
+#         ]
+#     }
+# }
 
 
 

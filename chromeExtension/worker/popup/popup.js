@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // check for which tab is active
     if(activeTab.url.includes('x.com')){
-        msg.innerHTML = `${ activeTab.url }`;
+        msg.innerHTML = `Twitter | X` ;
     }else{
-        msg.innerHTML = 'this is not twitter page';
+        msg.innerHTML = 'Not Twitter | X';
         scanBtn.style.display = 'none';
     }
 
@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // text tweets
     scanBtn.onclick = () => {
         chrome.tabs.sendMessage(activeTab.id, {
-            action: "grab"
+            action: "grab",
+            id: activeTab.id
         })
         .then( response => {
 
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             result.forEach(element => {
                 if (element.text !== " " && element.text !== null ){
-                    tweetBox.innerHTML += '<li>' + element.id + ":" + element.text + '</li>';  // append
+                    tweetBox.innerHTML += `<li>` + element.text + '</li>';  // append
                 }
             });
 
@@ -42,7 +43,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         if(action === "updatePopup"){
             tweetBox = "";
             result.forEach(item => {
-                tweetBox.innerHTML += item.text + item["sentiment_analysis"];
+                let color = element.is_fake ? "red" : "green";
+                tweetBox.innerHTML += `<li style=${color}>`+ ":" + element.text + item["sentiment_analysis"];
             })
         }
     })
