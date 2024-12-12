@@ -22,7 +22,7 @@ async function sendToServerForAnalysis(PORT, tweetsarray){
     chrome.runtime.onMessage.addListener(async (obj, sender, sendResponse) => {
         console.log(obj, sendResponse, sender)
 
-        const { action, tabid } = obj;
+        const { action, id } = obj;
 
         if (action === "grab") {
             const tweets = document.querySelectorAll('[data-testId="tweetText"]');
@@ -61,10 +61,18 @@ async function sendToServerForAnalysis(PORT, tweetsarray){
             })
 
             // TODO: send a message to the extension to update the pop up page
-            chrome.tabs.sendMessage(tabid, {
-                action: "updatePopup", 
-                result: analysisResult 
-            })
+
+            // await chrome.tabs.sendMessage(id, {
+            //     action: "updatePopup", 
+            //     id: id,
+            //     result: analysisResult 
+            // });
+
+            // const response = await chrome.tabs.sendMessage(id, {
+            //     action: "updatePopup",
+            //     id: id,
+            //     result:analysisResult
+            // })
         }
     })
 

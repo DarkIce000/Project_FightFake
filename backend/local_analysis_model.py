@@ -45,6 +45,8 @@ def askLocal(data):
         print(i)
         transformed_txt = tfidf_vectorizer.transform([i["text"]])
         prediction = pac.predict(transformed_txt)
+        score=accuracy_score(y_test,y_pred)
+        print(f'Accuracy: {round(score*100,2)}%')
         result = {
             "id": i["id"],
             "text": i["text"],
@@ -76,8 +78,6 @@ def askLocal(data):
 
 
 
-# score=accuracy_score(y_test,y_pred)
-# print(f'Accuracy: {round(score*100,2)}%')
 
 # # Build confusion matrix
 # confusion_matrix(y_test,y_pred, labels=['FAKE','REAL'])

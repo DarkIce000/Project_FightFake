@@ -170,12 +170,13 @@ sample_analysis =[
 def askGemini(tweetsarray):
   try:
     response = chat_session.send_message(str(tweetsarray))
+    print(response)
   except(exceptions.ResourceExhausted):
     return "Resource exhausted error"
   except:
     return "something went wrong"
 #   return sample_analysis
 
-
+print(askGemini(test))
 # r = askGemini(str(test))
 # print(r)
