@@ -27,31 +27,28 @@ tfidf_vectorizer=TfidfVectorizer(stop_words='english', max_df=0.7)
 
 # Fit and transform train set, transform test set
 tfidf_train=tfidf_vectorizer.fit_transform(x_train) 
-tfidf_test=tfidf_vectorizer.transform(x_test)
+# tfidf_test=tfidf_vectorizer.transform(x_test)
 
-d_test=tfidf_vectorizer.transform(["Krunal Pandya was too good in Pushpa 2."])
 
 # Initialize a PassiveAggressiveClassifier
 pac=PassiveAggressiveClassifier(max_iter=50)
 pac.fit(tfidf_train,y_train)
 
 # Predict on the test set and calculate accuracy
-y_pred=pac.predict(tfidf_test)
+# y_pred=pac.predict(tfidf_test)
 
 def askLocal(data):
-    print(data)
     analysis_result = []
     for i in data:
-        print(i)
         transformed_txt = tfidf_vectorizer.transform([i["text"]])
         prediction = pac.predict(transformed_txt)
-        score=accuracy_score(y_test,y_pred)
-        print(f'Accuracy: {round(score*100,2)}%')
+        confidence = pac.decision_function(transformed_txt)
         result = {
             "id": i["id"],
             "text": i["text"],
             "result":{
                 "sentiment_analysis": "",
+                "accuracy": round(abs(confidence[0]) * 100, 2), 
                 "is_fake": True if prediction[0] == "FAKE" else False,
                 "sources":[]
             }

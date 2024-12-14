@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask import jsonify
 import json
 from flask_cors import CORS
-from gemini_analysis import askGemini
+# from gemini_analysis import askGemini
 from local_analysis_model import askLocal
 
 # instance of flask application
