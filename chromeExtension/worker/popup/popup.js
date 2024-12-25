@@ -38,15 +38,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         })
     }
 
-    chrome.runtime.onMessage((obj, sender, sendResponse) => {
-        const {action, result } = obj;
-        if(action === "updatePopup"){
-            tweetBox = "";
-            result.forEach(item => {
-                let color = element.is_fake ? "red" : "green";
-                tweetBox.innerHTML += `<li style=${color}>`+ ":" + element.text + item["sentiment_analysis"];
-            })
-        }
-    })
+    // chrome.runtime.onMessage((obj, sender, sendResponse) => {
+    //     const {action, result } = obj;
+    //     if(action === "updatePopup"){
+    //         tweetBox = "";
+    //         result.forEach(item => {
+    //             let color = element.is_fake ? "red" : "green";
+    //             tweetBox.innerHTML += `<li style=${color}>`+ ":" + element.text + item["sentiment_analysis"];
+    //         })
+    //     }
+    // })
 
 })

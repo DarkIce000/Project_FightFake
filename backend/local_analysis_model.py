@@ -56,25 +56,3 @@ def askLocal(data):
         analysis_result.append(result)
     
     return analysis_result
-
-
-# let tweet = {
-#     id: for identifying in the page, 
-#     txt: text of the tweet,
-#     result: {
-#         sentiment_analysis: "",
-#         is_fake: bool, 
-#         sources: [
-#             "source1",
-#             "source2",
-#             "source3"
-#         ]
-#     }
-# }
-
-
-
-
-
-# # Build confusion matrix
-# confusion_matrix(y_test,y_pred, labels=['FAKE','REAL'])

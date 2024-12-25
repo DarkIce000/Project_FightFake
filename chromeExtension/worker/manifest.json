@@ -21,7 +21,8 @@
       "matches":[
         "https://*.x.com/*"
       ],
-      "run_at": "document_end"
+      "run_at": "document_end",
+      "css":["scripts/tooltip.css"]
     }
   ], 
 
