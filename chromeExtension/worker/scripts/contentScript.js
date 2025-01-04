@@ -1,7 +1,7 @@
 PORT = 5000
 
 async function sendToServerForAnalysis(PORT, tweetsarray){
-    const response = await fetch(`http://localhost:${PORT}/analyse/gemini/`, {
+    const response = await fetch(`http://localhost:${PORT}/analyse/local/`, {
         method: "POST",
         body: JSON.stringify({
             data: tweetsarray
@@ -49,6 +49,8 @@ async function sendToServerForAnalysis(PORT, tweetsarray){
                 analysisResult.forEach(element => {
                     const findTweet = document.getElementById(`${element.id}`)
                     const accuracy = document.createElement('span');
+                    accuracy.id = "hover-for-more";
+                    accuracy.className = "tooltip"
 
 
                     if(!element.result.is_fake){
@@ -60,120 +62,61 @@ async function sendToServerForAnalysis(PORT, tweetsarray){
                     }
                     accuracy.innerHTML += '<br/> <span style="color:black; background-color:white;"> "Confidence Score: " '+ element.result.accuracy + "% </span>";
                     findTweet.appendChild(accuracy);
-                    
+
+                    const tooltipDiv = document.createElement('div');
+                    tooltipDiv.id = `popup-for-${element.id}`
+                    tooltipDiv.className = "popup";
+                    tooltipDiv.innerHTML = `
+                                <div class="card">
+                                    <div class="card-title">
+                                        <h2>${element.result.is_fake }</h2>
+                                        <hr/>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-subheading">
+                                        <h3>Analysis Report</h3> 
+                                            <hr />
+                                            <div class="card-subbody">
+                                                <p>confidence score: ${ element.result.accuracy }</p>
+                                                <p>extra commment: ${ element.result.extra_comment } </p>
+                                                <p>sentiment analysis: ${element.result.sentiment_analysis } </p>
+                                            </div>
+                                        </div>
+                                        <div class="card-subheading">
+                                            <h3>Sources</h3> 
+                                            <hr />
+                                            <div class="card-subbody">
+                                                ${ element.result.sources
+                                                    .map((link) => '<li><a href="#">'+ link +'</a></li>'
+                                                ).join('') }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                    `  
+                    const body = document.querySelector('body');
+                    body.appendChild(tooltipDiv);
+                    accuracy.addEventListener('mouseover', () => {
+                        let rect = findTweet.getBoundingClientRect();
+                        tooltipDiv.style.top = 10+rect.y + "px";
+                        tooltipDiv.style.left = 300+rect.x + "px";
+                        tooltipDiv.classList.add('show');
+                    })
+                    accuracy.parentElement.parentElement.addEventListener('mouseleave', (e) => {
+                        tooltipDiv.classList.remove('show');
+                    })
+                    tooltipDiv.addEventListener('mouseover', () => {
+                        tooltipDiv.classList.add('show');
+                    })
+                    tooltipDiv.addEventListener('mouseleave', () => {
+                        tooltipDiv.classList.remove('show');
+                    })
                 })
 
             }
             catch{
                 console.log("cannot fetch");
             }
-
-            // TODO : to send msg back to the pop js to implement fake or not fake in pop js
-            tweets.forEach(element => {
-                sample_analysis_result =[
-                    {
-                        "id": "id__lae4wulxjp",
-                        "text": "Krunal Pandya was too good in Pushpa 2.",
-                        "result": {
-                            "sentiment_analysis": "Positive",
-                            "confidence_score": 60,
-                            "extra_comment": "what gemini has extra to say about this text",
-                            "is_fake": false,
-                            "sources": [
-                                "https://www.cinestaan.com/articles/27754/krunal-pandya-the-cricketer-was-not-in-pushpa-the-rule",
-                                "https://www.republicworld.com/sports-news/cricket-news/ipl-2023-krunal-pandya-reveals-all-about-his-pushpa-celebration-after-dismissing-virat-kohli-articles-119234",
-                                "https://www.news18.com/cricketnext/news/krunal-pandyas-pushpa-celebration-after-virat-kohlis-wicket-goes-viral-7529279.html"
-
-
-                            ]
-                        }
-                    },
-                    {
-                        "id": "id__h051bt5l8kr",
-                        "text": "That's why...🤔",
-                        "result": {
-                            "sentiment_analysis": "Neutral",
-                            "confidence_score": 60,
-                            "extra_comment": "what gemini think about this text",
-                            "is_fake": "Not verifiable",
-                            "sources": []
-                        }
-                    },
-                    {
-                        "id": "id__bv9ujpab2m",
-                        "text": "Explorable Todo List",
-                        "result": {
-                            "sentiment_analysis": "Neutral",
-                            "confidence_score": 60,
-                            "extra_comment": "ai comments about given text",
-                            "is_fake": "Not verifiable",
-                            "sources": []
-                        }
-                    },
-                    {
-                        "id": "id__5qffdw89x5q",
-                        "text": "source: tech twitter",
-                        "result": {
-                            "sentiment_analysis": "Neutral",
-                            "confidence_score": 60,
-                            "extra_comment": "ai comments about given text",
-                            "is_fake": "Not verifiable",
-                            "sources": []
-                        }
-                    },
-                    {
-                        "id": "id__oo6pxa080v",
-                        "text": "We found it in archives. 16 years ago, in 2008, at a summit of Arab leaders in Damascus, Gaddafi, showing the execution of Saddam Hussein, said:",
-                        "result": {
-                            "sentiment_analysis": "Neutral",
-                            "confidence_score": 60,
-                            "extra_comment": "ai comments about given text", 
-                            "is_fake": "Not verifiable", 
-                            "sources": []
-                        }
-                    }
-                ]
-                // create a div 
-                const tooltipDiv = document.createElement('div');
-                tooltipDiv.className = "tooltip";
-
-
-                tooltipDiv.innerHTML = `
-                <p>checker</p>
-                        <div class="card">
-                            <div class="card-title">
-                                <h2>Fake</h2>
-                                <hr/>
-                            </div>
-                            <div class="card-body">
-                                <div class="card-subheading">
-                                <h3>Analysis Report</h3> 
-                                    <hr />
-                                    <div class="card-subbody">
-                                        <p>confidence score: </p>
-                                        <p>extra commment: </p>
-                                        <p>sentiment analysis: </p>
-                                    </div>
-                                </div>
-                                <div class="card-subheading">
-                                    <h3>Sources</h3> 
-                                    <hr />
-                                    <div class="card-subbody">
-                                        <li><a href="#">google.com</a></li>    
-                                        <li><a href="#">google.com</a></li>    
-                                        <li><a href="#">google.com</a></li>    
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                `
-
-
-
-                element.appendChild(tooltipDiv);
-
-            })
-
         }
     })
 

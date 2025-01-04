@@ -47,10 +47,15 @@ def askLocal(data):
             "id": i["id"],
             "text": i["text"],
             "result":{
-                "sentiment_analysis": "",
+                "sentiment_analysis": "Anger, Anxiety",
+                "extra_comment": "Extra comment that AI wanted to say.",
                 "accuracy": round(abs(confidence[0]) * 100, 2), 
                 "is_fake": True if prediction[0] == "FAKE" else False,
-                "sources":[]
+                "sources": [
+                "https://www.cinestaan.com/articles/27754/krunal-pandya-the-cricketer-was-not-in-pushpa-the-rule",
+                "https://www.republicworld.com/sports-news/cricket-news/ipl-2023-krunal-pandya-reveals-all-about-his-pushpa-celebration-after-dismissing-virat-kohli-articles-119234",
+                "https://www.news18.com/cricketnext/news/krunal-pandyas-pushpa-celebration-after-virat-kohlis-wicket-goes-viral-7529279.html"
+                ]
             }
         }
         analysis_result.append(result)

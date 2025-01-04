@@ -148,7 +148,7 @@ def askGemini():
 #   except:
 #     return "something went wrong"
 # #   return sample_analysis
-  return sample_analysis
+  return sample_analysis_result
 
 print(askGemini())
 # r = askGemini(str(test))
