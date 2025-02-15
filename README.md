@@ -10,7 +10,7 @@
 	So to make the fake news obvious we have built a chrome extension, that highlights the previous established fake news in the red and search the internet for the sources that has reported about this news previously. If sources are trusted it will show near the post. Using Gemini to take process the article and take decision. 
 3. **What we are expecting it to solve ?** 
 
-	I am expecting it to making fake news obvious, so that it does not hides in the plain sight. If any person sharing that post has in the back of the mind, I am sharing the post that is fake news.
+	I am expecting it to making fake news obvious, so that it does not hides in the plain sight. If any person sharing that post has in the back of the mind, I am sharing the post that is fake news. This make them have guilt for sharing and also recieving person if he has installed the extension, it will also display red to them also.
   
 
 ### Techstacks
